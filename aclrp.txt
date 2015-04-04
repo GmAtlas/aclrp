@@ -1,0 +1,10 @@
+"aclrp"
+{
+	"base"		"sandbox"
+	"title"		"ACLRP"
+	"maps"		"^lrp_"
+	"menusystem"	"1"
+	"workshopid"	""
+
+
+}
