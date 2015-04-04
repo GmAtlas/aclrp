@@ -28,6 +28,13 @@ end
 
 
 function PLAYER:Spawn()
+
+	local col = self.Player:GetInfo( "cl_playercolor" )
+	self.Player:SetPlayerColor( Vector( col ) )
+
+	local col = self.Player:GetInfo( "cl_weaponcolor" )
+	self.Player:SetWeaponColor( Vector( col ) )
+
 end
 
 
@@ -67,6 +74,10 @@ end
 
 
 function PLAYER:GetHandsModel()
+local jobtable = ACLRP[self.Player():Team()]
+if not jobtable then return end
+local model = istable(jobtable.Models) and jobtable.Model[1] or jobtable.Model
+if not model then return end
 
 	local playermodel = player_manager.TranslateToPlayerModelName( self.Player:GetModel() )
 	return player_manager.TranslatePlayerHands( playermodel )
