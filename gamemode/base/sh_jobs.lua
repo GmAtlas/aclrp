@@ -34,6 +34,16 @@ JobCrissant[name] = table.insert(ACLRPJobs, job )
 
 end
 
-TEAM_CITIZEN = GM:JobRegister("Citizen",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )
+TEAM_CITIZEN = GM:JobRegister("Citizen",{
+Max = 100,
+Desc = [[Member of Apex City ]],
+Name = "Citizen",
+Model = {
+"models/player/group01/male_02.mdl",
+"models/player/group01/male_03.mdl",
+"models/player/group01/male_01.mdl",
+"models/player/group01/male_04.mdl",
+}
+} )
 TEAM_HOBO = GM:JobRegister("Hobo",{Max = 5,Desc = [[ Lowest Member of Society]],Salary = 0,NChangeFrom = TEAM_CITIZEN,Model = "models/player/corpse1.mdl",Color = Color(0,0,0)}) 
 TEAM_WHORE = GM:JobRegister("WHORE",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )

@@ -1,4 +1,4 @@
-GM.Name = "LeRP"
+GM.Name = "ACLRP"
 GM.Author = "Atlas/Setu_Sertao, Mr.White"
 GM.Email = "leveluptime@apexgamecommunity.com"
 GM.Website = "site.apex.gs"

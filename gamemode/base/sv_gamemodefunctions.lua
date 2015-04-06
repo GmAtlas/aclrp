@@ -1,9 +1,16 @@
-function GM:PlayerInitialSpawn(ply)
-	self.BaseClass:PlayerInitialSpawn(ply)
-	
+function GM:Initialize()
+
+hook.Call("InitializePlayerDatabase")
 
 end
-print("DD")
+
+
+function GM:PlayerInitialSpawn(ply)
+	self.BaseClass:PlayerInitialSpawn(ply)
+	hook.Call("InitialPlayerDB",GAMEMODE,ply)
+
+end
+
 function GM:PlayerSetModel(ply)
 	local team = ply:Team()
 
@@ -43,10 +50,9 @@ function GM:PlayerSpawn(ply)
 	ply:CrosshairEnable()
 	ply:UnSpectate()
 	self.BaseClass.BaseClass:PlayerSpawn(ply)
-self.BaseClass:PlayerSpawn(ply)
+	self.BaseClass:PlayerSpawn(ply)
 
 	ply:SetHealth( 100)
-
 	ply:AllowFlashlight(true)
 
 	
