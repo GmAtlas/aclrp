@@ -1,4 +1,4 @@
-"aclrp"
+"AclRP"
 {
 	"base"		"sandbox"
 	"title"		"ACLRP"

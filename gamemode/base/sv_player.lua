@@ -1,6 +1,6 @@
 --[[
 Player Manager
---]]
+
 
 function GM:OnPhysgunFreeze( weapon, phys, ent, ply )
 	
@@ -585,13 +585,13 @@ end
 
 local sv_alltalk = GetConVar( "sv_alltalk" )
 
---[[---------------------------------------------------------
+-----------------------------------------------------------
 	Name: gamemode:PlayerCanHearPlayersVoice()
 	Desc: Can this player see the other player's voice?
 		Returns 2 bools.
 		1. Can the player hear the other player
 		2. Can they hear them spacially
------------------------------------------------------------]]
+-----------------------------------------------------------
 function GM:PlayerCanHearPlayersVoice( pListener, pTalker )
 
 	local alltalk = sv_alltalk:GetInt()
@@ -630,3 +630,6 @@ function GM:PlayerButtonDown( ply, btn ) end
 function GM:PlayerButtonUp( ply, btn ) end
 
 concommand.Add( "changeteam", function( pl, cmd, args ) hook.Call( "PlayerRequestTeam", GAMEMODE, pl, tonumber( args[ 1 ] ) ) end )
+--]]
+
+print("deletefile")

@@ -2,7 +2,7 @@ ACLRPJobs= {}
 PrintTable(ACLRPJobs)
 local JobCrissant = {}
 local JCount = 0
-function GAMEMODE:JobRegister(name,custjob)
+function GM:JobRegister(name,custjob)
 
 JCount = JCount + 1
 local job = custjob
@@ -21,7 +21,7 @@ job.Desc = job.Desc 								or [[ undefined job ]]
 job.NChangeFrom = job.NChangeFrom 					or 1
 
 JobCrissant[name] = table.insert(ACLRPJobs, job )
- 
+  
 	team.SetUp(#ACLRPJobs, name, job.Color)
 	local Team = #ACLRPJobs
 	if type(job.Model) == "table" then
@@ -29,10 +29,11 @@ JobCrissant[name] = table.insert(ACLRPJobs, job )
 	else
 		util.PrecacheModel(job.Model)
 	end
-	
+	print("TEAM REGISTERED: "..Team.." "..name.." "..team.GetName(Team) )  
 	return Team
 
 end
 
-TEAM_CITIZEN = GAMEMODE:JobRegister("Citizen",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )
-TEAM_HOBO = GAMEMODE:JobRegister("Hobo",{Max = 5,Desc = [[ Lowest Member of Society]],Salary = 0,NChangeFrom = TEAM_CITIZEN,Model = "models/player/corpse1.mdl",Color = Color(0,0,0)}) 
+TEAM_CITIZEN = GM:JobRegister("Citizen",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )
+TEAM_HOBO = GM:JobRegister("Hobo",{Max = 5,Desc = [[ Lowest Member of Society]],Salary = 0,NChangeFrom = TEAM_CITIZEN,Model = "models/player/corpse1.mdl",Color = Color(0,0,0)}) 
+TEAM_WHORE = GM:JobRegister("WHORE",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )
