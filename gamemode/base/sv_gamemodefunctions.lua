@@ -8,6 +8,7 @@ end
 function GM:PlayerInitialSpawn(ply)
 	self.BaseClass:PlayerInitialSpawn(ply)
 	hook.Call("InitialPlayerDB",GAMEMODE,ply)
+	hook.Call("LoadPlayerDataInit",GAMEMODE,ply)
 
 end
 
@@ -35,7 +36,7 @@ function GM:PlayerSetModel(ply)
 				EndModel = TEAM.Model[math.random(#TEAM.Model)]
 				print(EndModel)
 			end
-		else
+		else 
 			EndModel = TEAM.Model
 		end
 
@@ -56,4 +57,9 @@ function GM:PlayerSpawn(ply)
 	ply:AllowFlashlight(true)
 
 	
+end
+
+function GM:PlayerDisconnected( ply )
+	 PrintMessage( HUD_PRINTTALK, ply:Name().. " has left the server." )
+	 hook.Call("SavePlayer",GAMEMODE,ply)
 end

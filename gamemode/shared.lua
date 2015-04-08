@@ -1,4 +1,4 @@
-GM.Name = "ACLRP"
+GM.Name = "AclRP"
 GM.Author = "Atlas/Setu_Sertao, Mr.White"
 GM.Email = "leveluptime@apexgamecommunity.com"
 GM.Website = "site.apex.gs"
@@ -9,6 +9,11 @@ DeriveGamemode( "sandbox" )
 
 function GM:CreateTeams()
 
-print("nignog")
-
 end
+
+GM.Config = {}
+
+GM.Config.PayDayTime 				= 300
+GM.Config.DefaultPayDay 			= 50 
+
+ 
