@@ -62,4 +62,15 @@ end
 function GM:PlayerDisconnected( ply )
 	 PrintMessage( HUD_PRINTTALK, ply:Name().. " has left the server." )
 	 hook.Call("SavePlayer",GAMEMODE,ply)
+end 
+ 
+
+
+function GM:OnPlayerChangedTeam(  ply, oldTeam, newTeam )
+	if(!timer.Exists(ply:UniqueID().."paydaytimer")) then
+		timer.Create(ply:UniqueID().."paydaytimer",GAMEMODE.Config.paydaytimer,0,function()
+			ply:AddMoney(ACLRPJobs[ply:Team()].Salary or GAMEMODE.Config.basesalary)
+			
+		end)
+	end
 end
