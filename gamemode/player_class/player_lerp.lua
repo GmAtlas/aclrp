@@ -23,4 +23,8 @@ function PLAYER:Spawn()
 	self.Player:SetWeaponColor( Vector( col ) )
 end
 
+function PLAYER:Loadout()
+
+end
+
 player_manager.RegisterClass("player_lerp", PLAYER, "player_default")
