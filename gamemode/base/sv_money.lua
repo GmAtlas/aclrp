@@ -9,4 +9,8 @@ end
 
 function GM:PayPlayer(p1,p2,amt)
 
+p1:AddMoney(-amt)
+p2:AddMoney(amt)
+
 end
+
