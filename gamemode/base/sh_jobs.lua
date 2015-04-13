@@ -48,7 +48,7 @@ Salary = 66
 } )
 TEAM_HOBO = GM:JobRegister("Hobo",{Max = 5,Desc = [[ Lowest Member of Society]],Salary = 0,NChangeFrom = TEAM_CITIZEN,Model = "models/player/corpse1.mdl",Color = Color(0,0,0)}) 
 TEAM_WHORE = GM:JobRegister("WHORE",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )
-TEAM_COP = GAMEMODE:JobRegister("Police",{
+TEAM_COP = GM:JobRegister("Police",{
 Max = 7,
 Desc = [[Police of Apex City ]],
 Name = "Police",
