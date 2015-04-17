@@ -46,11 +46,7 @@ function GM:PlayerSetModel(ply)
 end
 
 function GM:PlayerSpawn(ply)
-	player_manager.SetPlayerClass(ply, "player_lerp")
 	
-	
-		
-		
 		
 	ply:SetNoCollideWithTeammates(false)
 	ply:CrosshairEnable()
@@ -59,8 +55,13 @@ function GM:PlayerSpawn(ply)
 	self.BaseClass:PlayerSpawn(ply)
 	ply:SetPlayerValue("hunger",100)
 	ply:SetHealth( 100)
-	ply:AllowFlashlight(true)
-
+	--ply:AllowFlashlight(true)
+	player_manager.SetPlayerClass(ply, "player_lerp")
+	player_manager.OnPlayerSpawn( ply )
+	player_manager.RunClass( ply, "Spawn" )
+	if(ply:IsArrested()) then
+	ply:Arrest()
+	end
 	
 end
 

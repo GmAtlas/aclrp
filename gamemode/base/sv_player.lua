@@ -19,19 +19,3 @@ data = sql.Query("SELECT rpname, wallet, salary FROM aclrp_player WHERE uid = " 
 
 end
 
-function peta:IsArrested()
-	return self:GetPlayerValue("arrested",false)
-end
-function peta:Arrest()
-self:SetPlayerValue("arrested", true)
-end
-
-function peta:Warrent(reason)
-	self:SetPlayerValue("warrent",true)
-	self:SetPlayerValue("warrentreason",reason)
-end
-
-function peta:UnWarrent()
-	self:SetPlayerValue("warrent",nil)
-	self:SetPlayerValue("warrentreason","")
-end

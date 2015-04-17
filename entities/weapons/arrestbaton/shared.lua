@@ -90,7 +90,15 @@ function SWEP:PrimaryAttack()
 
                -- self:Hit( traceHit, pPlayer );
 				
-						print(traceHit.Entity)
+						if SERVER then
+							if(traceHit.Entity:IsPlayer()) then
+								if(traceHit.Entity:IsWanted()) then
+								traceHit.Entity:Arrest()
+								end
+						
+							end
+						
+						end
 				
                 return
 
@@ -211,7 +219,7 @@ function SWEP:SetupAttachmentPoints()
                 };
 
                 // Lookup and store all connections
-                for i = 1, NUM_BEAM_ATTACHMENTS do
+                for i = 1, (NUM_BEAM_ATTACHMENTS or 0) do
                         self.m_BeamAttachments[i]        = {}
                         self.m_BeamAttachments[i].IDs    = {}
                         self.m_BeamAttachments[i].IDs[0] = self.Weapon:LookupAttachment( szBeamAttachNamesTop[i] );
