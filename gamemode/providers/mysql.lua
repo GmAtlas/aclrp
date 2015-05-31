@@ -1,10 +1,4 @@
 
-local mysql_hostname = 'fi.apex.gs' 
-local mysql_username = 'billhackweb' 
-local mysql_password = '_g4B5djAvCeggAkuG41ejIC46t27ZUc5K8Xy63zkV4wB5hlBwQGPHgQogzBqR' 
-local mysql_database = 'billhackweb_aclrp' 
-local mysql_port = 3306 
-
 
 require('mysqloo')
 
