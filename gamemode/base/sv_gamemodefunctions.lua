@@ -1,47 +1,20 @@
 function GM:Initialize()
 
 hook.Call("InitializePlayerDatabase")
-
+hook.Call("LoadDataProvider",self)
 end
 
 
 function GM:PlayerInitialSpawn(ply)
-	ply:SetTeam(TEAM_CITIZEN)
-	self.BaseClass:PlayerInitialSpawn(ply)
-	hook.Call("InitialPlayerDB",GAMEMODE,ply)
-	hook.Call("LoadPlayerDataInit",GAMEMODE,ply)
+
+		self.BaseClass:PlayerInitialSpawn(ply)
+		ply:SetTeam(TEAM_CITIZEN)
+		ply:GetPlayerInfo()
 
 end
 
 function GM:PlayerSetModel(ply)
-	local team = ply:Team()
-
-		local TEAM = ACLRPJobs[team]
-	
-		if not TEAM then return end
-		local EndModel = ''
-		
-		if(istable(TEAM.Model)) then
-			local found = false
-			--[[
-			for _,Models in pairs(TEAM.Model) do
-				if ChosenModel == string.lower(Models) then
-					EndModel = Models
-					found = true
-					break
-				end
-			end
-			--]]
-		
-			if found == false then
-				EndModel = TEAM.Model[math.random(#TEAM.Model)]
-				print(EndModel)
-			end
-		else 
-			EndModel = TEAM.Model
-		end
-
-		ply:SetModel(EndModel)
+	ply:GetPlayerValue("Model","models/players/Group01/male_02.mdl")
 	ply:SetupHands()
 end
 
@@ -51,17 +24,25 @@ function GM:PlayerSpawn(ply)
 	ply:SetNoCollideWithTeammates(false)
 	ply:CrosshairEnable()
 	ply:UnSpectate()
+	
 	self.BaseClass.BaseClass:PlayerSpawn(ply)
 	self.BaseClass:PlayerSpawn(ply)
+	
 	ply:SetPlayerValue("hunger",100)
-	ply:SetHealth( 100)
-	--ply:AllowFlashlight(true)
+	ply:SetHealth( 100 )
+	
 	player_manager.SetPlayerClass(ply, "player_lerp")
 	player_manager.OnPlayerSpawn( ply )
 	player_manager.RunClass( ply, "Spawn" )
+	
+	ply:GetPlayerInfo()
+	
 	if(ply:IsArrested()) then
 	ply:Arrest()
 	end
+	
+	
+		SafeRemoveEntity(ply.death_ragdoll)
 	
 end
 
@@ -93,3 +74,4 @@ function GM:OnPlayerChangedTeam(  ply, oldTeam, newTeam )
 		end)
 	end
 end
+

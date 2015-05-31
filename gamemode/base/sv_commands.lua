@@ -25,3 +25,4 @@ return ""
 end
 
 AddChatCommand("!slay",dodat)
+AddChatCommand("!warrant",dowarrent)

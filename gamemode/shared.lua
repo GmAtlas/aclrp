@@ -7,14 +7,13 @@ include("player_class/player_lerp.lua")
 AddCSLuaFile("player_class/player_lerp.lua")
 DeriveGamemode( "sandbox" )
 
+ACLRP = {}
+ACLRP.__index = ACLRP
 
 function GM:CreateTeams()
 
 end
 
-GM.Config = {}
 
-GM.Config.PayDayTime 				= 300
-GM.Config.DefaultPayDay 			= 50 
 
  

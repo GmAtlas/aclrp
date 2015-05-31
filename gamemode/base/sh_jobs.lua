@@ -24,11 +24,7 @@ JobCrissant[name] = table.insert(ACLRPJobs, job )
   
 	team.SetUp(#ACLRPJobs, name, job.Color)
 	local Team = #ACLRPJobs
-	if type(job.Model) == "table" then
-		for k,v in pairs(job.Model) do util.PrecacheModel(v) end
-	else
-		util.PrecacheModel(job.Model)
-	end
+	
 	print("TEAM REGISTERED: "..Team.." "..name.." "..team.GetName(Team) )  
 	return Team
 
@@ -38,26 +34,25 @@ TEAM_CITIZEN = GM:JobRegister("Citizen",{
 Max = 100,
 Desc = [[Member of Apex City ]],
 Name = "Citizen",
-Model = {
-"models/player/group01/male_02.mdl",
-"models/player/group01/male_03.mdl",
-"models/player/group01/male_01.mdl",
-"models/player/group01/male_04.mdl",
-},
 Salary = 66
 } )
-TEAM_HOBO = GM:JobRegister("Hobo",{Max = 5,Desc = [[ Lowest Member of Society]],Salary = 0,NChangeFrom = TEAM_CITIZEN,Model = "models/player/corpse1.mdl",Color = Color(0,0,0)}) 
 TEAM_WHORE = GM:JobRegister("WHORE",{Max = 100,Desc = [[Member of Apex City ]],Name = "Citizen"} )
 TEAM_COP = GM:JobRegister("Police",{
-Max = 7,
+Max = 5,
 Desc = [[Police of Apex City ]],
 Name = "Police",
-Model = {
-"models/player/police_fem.mdl",
-},
 Weapons = {"arrestbaton"},
 Salary = 88
 } )
+
+TEAM_EMT = GM:JobRegister("EMT",{
+Max = 2,
+Desc = [[Medics of Apex City ]],
+Name = "EMT",
+Weapons = {"defib"},
+Salary = 50
+} )
+
 
 
 

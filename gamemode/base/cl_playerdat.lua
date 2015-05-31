@@ -4,7 +4,6 @@ local peta = FindMetaTable( 'Player' )
 
 net.Receive("ACLRP-PlayerInfo",function()
 	ACLRPPlayerInfo = util.JSONToTable( net.ReadString() )
-		PrintTable(ACLRPPlayerInfo)
 end)
 
 function GetPlayerValue(id, default)

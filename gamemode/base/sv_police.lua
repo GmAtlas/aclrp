@@ -20,27 +20,85 @@ ACLRP_JailPoints = {
 }
 }
 
+function FindPlyName( name )
+
+	local matches = {}
+	
+		for k,v in pairs( player.GetAll( ) ) do
+			if( v:GetName( ):lower( ):match( name:lower( ) ) ) then
+				table.insert(matches,v)
+			end
+		end
+		
+		if(#matches == 0 ) then 
+			return false 
+		end
+		return matches[1]
+end
+
 function peta:IsArrested()
 	return self:GetPlayerValue("arrested",false)
 end
-function peta:Arrest()
-self:SetPlayerValue("arrested", true)
-self:StripWeapons()
-self:SetPos(table.Random(ACLRP_JailPoints[game.GetMap()]))
-for k,v in pairs(player.GetAll()) do
-v:SendLua("anotify.Create('"..self:Nick().." Has been arrested! Reason:"..self:GetPlayerValue("warrentreason","nil").."',5)"  )
+
+function GM:OnArrest(ply)
+ply:SetPlayerValue("arrested", true)
+ply:SetPlayerValue("arrestedtime",CurTime()+GAMEMODE.Config.jailtime)
+	for k,v in pairs(player.GetAll()) do
+		v:SendLua("anotify.Create('"..ply:Nick().." Has been arrested! Reason:"..ply:GetPlayerValue("warrentreason","nil").."',5)"  )
+		
+	end
+	ply:Arrest()
+	ply:ChatPrint("You will be arrested in "..GAMEMODE.Config.jailtime.." Seconds!")
+	timer.Create(ply:UniqueID() .. "jailtimer", GAMEMODE.Config.jailtime, 1, function()
+		if IsValid(ply) then 
+			ply:UnWarrent()
+			ply:SetPlayerValue("arrested", false)
+			ply:Spawn()
+		end	
+	end)
+	
 end
+function peta:Arrest()
+	
+	self:StripWeapons()
+	self:SetPos(table.Random(ACLRP_JailPoints[game.GetMap()]))
+	SetGlobalValue()
 end
 
 function peta:Warrent(reason)
+	
 	self:SetPlayerValue("warrent",true)
 	self:SetPlayerValue("warrentreason",reason)
+	SetGlobalValue()
+	timer.Simple(60,function()
+	if(self:IsWanted() and !self:IsArrested()) then
+	self:UnWarrent()
+	end
+	end)
 end
+
+function dowarrent(ply,strin)
+
+local pl = string.Explode(" ", string.lower(strin))[1] 
+
+local reason =  string.sub(strin, string.len(pl) + 2, string.len(strin))
+print(pl,reason,(ply:Team() != TEAM_COP),FindPlyName( pl ))
+	if(ply:Team() != TEAM_COP) then return end
+	if !FindPlyName(pl) then return end
+
+FindPlyName(pl):Warrent(reason)
+SetGlobalValue()
+end
+
 
 function peta:UnWarrent()
 	self:SetPlayerValue("warrent",nil)
 	self:SetPlayerValue("warrentreason","")
+	SetGlobalValue()
 end
 function peta:IsWanted()
 	return (self:GetPlayerValue("warrent") == true)
+end
+function peta:IsArrested()
+	return (self:GetPlayerValue("arrested") == true)
 end

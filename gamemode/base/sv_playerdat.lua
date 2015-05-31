@@ -4,25 +4,6 @@ util.AddNetworkString("ACLRP-PlayerInfo")
 ACLRPPlayerInfo = {}
 
 local peta = FindMetaTable( 'Player' )
-
-
-function peta:LoadPlayerData()
-	local data = sql.Query("SELECT * from aclrp_player WHERE uid = "..self:UniqueID())
-		if(data) then 
-		for k,v in pairs(data[1]) do
-			self:SetPlayerValue(k,v)
-		end
-		self:SendPlayerInfo()
-	return data[1].rpname,data[1].wallet,data[1].uid,data[1].salary
-	
-	else
-	self:SetPlayerValue("wallet",GAMEMODE.Config.startingcash)
-	self:SetPlayerValue("salary",GAMEMODE.Config.basesalary)
-	self:SetPlayerValue("uid",self:UniqueID())
-	self:SendPlayerInfo()
-	end
-end
-hook.Add("LoadPlayerDataInit","lpdi",function(ply) ply:LoadPlayerData() end)
 	
 function peta:GetPlayerValue(id,default)
 	if(ACLRPPlayerInfo[self:UniqueID()] ~= nil and ACLRPPlayerInfo[self:UniqueID()][id] ~= nil) then

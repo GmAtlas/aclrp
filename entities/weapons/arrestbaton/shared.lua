@@ -93,6 +93,7 @@ function SWEP:PrimaryAttack()
 						if SERVER then
 							if(traceHit.Entity:IsPlayer()) then
 								if(traceHit.Entity:IsWanted()) then
+								hook.Call("OnArrest",GAMEMODE,traceHit.Entity)
 								traceHit.Entity:Arrest()
 								end
 						
